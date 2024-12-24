@@ -15,7 +15,8 @@ export default {
         newRed: "#FF2C2C",
       },
       inset: {
-        "100": "400px",
+        "88": "22rem",
+        "100": "25rem",
       },
       rotate: {
         20: "20deg",
