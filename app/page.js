@@ -23,13 +23,13 @@ export default function LoginPage() {
         <Form />
       </div>
       <Image 
-        src="/pic/catdog.png"
+        src="/pic/catdog.png" 
         alt="posa doggo"
         height={900}
         width={900}
         className="relative bottom-88 left-1/2 -translate-x-1/2 pointer-events-none"
-      />
-      <Users onChangeAvatar={handleChangeAvatar} />
+      /> {/* HUGE LOWER CENTERED ANIMALS  */}
+      <Users onChangeAvatar={handleChangeAvatar} /> {/* POSITION ABSOLUTE ON LOWER LEFT */}
     </div>
   )
 }
