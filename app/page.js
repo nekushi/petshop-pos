@@ -19,7 +19,14 @@ export default function LoginPage() {
   return (
     <div className="bg-newRed h-screen overflow-hidden text-white">
       <div className="mt-16 mx-auto flex flex-col justify-center items-center w-1/4 space-y-8 overflow-hidden">
-        <Avatar avatar={avatar} />
+        {/* <Avatar avatar={avatar} /> */}
+        <AvatarArea avatar={avatar}>
+          {({ avatar }) => (
+            <>
+              <Avatar avatar={avatar} />
+            </>
+          )}
+        </AvatarArea>
         <Form />
       </div>
       <Image 
@@ -34,13 +41,33 @@ export default function LoginPage() {
   )
 }
 
+function Icon({ outerSize, outerBW, innerSize, top, bottom }) {
+  return (
+    <div 
+      style={{ width: outerSize, height: outerSize, borderWidth: outerBW, }} 
+      className="relative overflow-hidden mx-auto bg-white border-white rounded-full"
+    >
+      <div style={{ width: innerSize, height: innerSize, top: top }} className="absolute bg-newRed rounded-full left-1/2 -translate-x-1/2"></div>
+      <div style={{ bottom: bottom }} className="absolute bg-newRed w-10/12 h-1/2  left-1/2 -translate-x-1/2 rounded-t-full"></div>
+    </div>
+  )
+}
+
 function Avatar({ avatar }) {
   return (
-    <div className="text-center space-y-2">
-      <LargerIcon />
+    <div className={`relative mx-auto`}>
+      <Icon outerSize={28*4} outerBW={8} innerSize={12*4} top={2*4} bottom={-4*4} />
       <p className="text-xl font-bold">
         {avatar}
       </p>
+    </div>
+  )
+}
+
+function AvatarArea({ children, avatar }) {
+  return (
+    <div className="text-center space-y-2">
+      {children({ avatar: avatar })}
     </div>
   )
 }
@@ -86,7 +113,7 @@ function Users({ onChangeAvatar }) {
           key={user.id}
           className="flex gap-5 items-center"
         >
-          <SmallerIcon />
+          <Icon outerSize={10*4} outerBW={2} innerSize={4*4} top={1*4} bottom={-1*4} />
           <p
             onClick={() => {onChangeAvatar(user.user)}}
             className="hover:underline hover:underline-offset-4 hover:cursor-pointer"
@@ -98,22 +125,3 @@ function Users({ onChangeAvatar }) {
     </div>
   )
 }
-
-function LargerIcon() {
-  return (
-    <div className={`relative overflow-hidden mx-auto bg-white size-28 border-8 border-white rounded-full`}>
-      <div className={`absolute bg-newRed size-12 rounded-full top-2 left-1/2 -translate-x-1/2`}></div>
-      <div className={`absolute bg-newRed w-10/12 h-1/2 -bottom-4 left-1/2 -translate-x-1/2 rounded-t-full`}></div>
-    </div>
-  )
-}
-
-function SmallerIcon() {
-  return (
-    <div className={`relative overflow-hidden bg-white size-10 border-2 border-white rounded-full`}>
-      <div className={`absolute bg-newRed size-4 rounded-full top-1 left-1/2 -translate-x-1/2`}></div>
-      <div className={`absolute bg-newRed w-10/12 h-1/2 -bottom-1 left-1/2 -translate-x-1/2 rounded-t-full`}></div>
-    </div>
-  )
-}
-
